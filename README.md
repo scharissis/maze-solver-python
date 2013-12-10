@@ -1,12 +1,8 @@
 Maze Solver
 ===
 
-Usage:
-=====
-./solve_maze.sh <image>
-
-Example:
-=====
+Usage example:
+======
 ```
 stefano@stefano-laptop:~/code/src/maze-solver$ ./solve_maze.sh mazes/maze_000.jpg
 INFO: Loaded image 'mazes/maze_000.jpg' ((800, 1002) pixels).
