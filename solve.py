@@ -18,7 +18,6 @@ import os
 import sys
 import logging
 from PIL import Image
-from Queue import Queue
 
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
 
@@ -60,6 +59,10 @@ class Solver:
         self._cleanImage() 
         logging.info("Loaded image '{0}' ({1} pixels).".format(self.file_in, self.image.size))
 
+        # BFS parameters.
+	self.tmp_dir = 'tmp'
+        self.iterations = 0
+
     """
     Purify pixels to either pure black or white.
     """
@@ -79,8 +82,8 @@ class Solver:
         path = self._BFS(self.START, self.END)
         if path is None:
             logging.error('No path found.')
-            self._drawX(base_pixels, self.START)
-            self._drawX(base_pixels, self.END)
+            self._drawX(self.pixels, self.START)
+            self._drawX(self.pixels, self.END)
             self.image.save(self.file_out)
             sys.exit(1)
         
@@ -140,7 +143,7 @@ class Solver:
                 for position in path:
                     x,y = position
                     pixels[x,y] = self.COLOR_RED
-                image.save('tmp/{0:05d}.jpg'.format(img))
+                image.save('{0}/{1:05d}.jpg'.format(self.tmp_dir, img))
                 logging.info('Found a path after {0} iterations.'.format(self.iterations))
                 return path
             
@@ -152,8 +155,8 @@ class Solver:
                     new_path.append(neighbour)
                     Q += [new_path]
 
-            if self.iterations%self.SNAPSHOT_FREQ == 0:
-                image.save('tmp/{0:05d}.jpg'.format(img))
+            if self.iterations % self.SNAPSHOT_FREQ == 0:
+                image.save('{0}/{1:05d}.jpg'.format(self.tmp_dir, img))
                 img += 1
             self.iterations += 1
 
