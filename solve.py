@@ -133,14 +133,18 @@ class Solver:
         
         while len(Q) != 0:
             path = Q.pop(0)
-            pixel = path[-1]
+            pos = path[-1]
             
-            if pixel == end:
-                self.image.save('tmp/{0:05d}.jpg'.format(img))
+            if pos == end:
+                # Draw solution path.
+                for position in path:
+                    x,y = position
+                    pixels[x,y] = self.COLOR_RED
+                image.save('tmp/{0:05d}.jpg'.format(img))
                 logging.info('Found a path after {0} iterations.'.format(self.iterations))
                 return path
             
-            for neighbour in self._getNeighbours(pixel):
+            for neighbour in self._getNeighbours(pos):
                 x,y = neighbour
                 if self._inBounds(image.size, x, y) and self._isWhite(pixels[x,y]):
                     pixels[x,y] = self.FRONTIER_COLOR

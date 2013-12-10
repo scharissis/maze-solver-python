@@ -34,5 +34,5 @@ echo -n 'Generating GIF...'
     done
 )
 
-convert -delay 10 -loop 1 -layers optimize $( ls $TMP_DIR/*.jpg | sort -V ) $OUT_GIF
+convert -delay 10 -loop 0 -layers optimize $( ls $TMP_DIR/*.jpg | sort -V ) $OUT_GIF
 echo -e "\t$OUT_GIF"
