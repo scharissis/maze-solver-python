@@ -79,7 +79,7 @@ class Solver:
                 
     def solve(self):
         logging.info('Solving...')
-        path = self._BFS(self.START, self.END)
+        path = None; # self._BFS(self.START, self.END)
         if path is None:
             logging.error('No path found.')
             self._drawX(self.START, self.START_COLOR)
