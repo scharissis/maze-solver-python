@@ -12,3 +12,9 @@ INFO: Solution saved as 'out/maze_000.jpg'.
 Generating AVI...	out/maze_000.avi
 Generating GIF...	out/maze_000.gif
 ```
+
+
+Dependencies:
+======
+  * Package 'imagemagick' for the `convert` command.
+  sudo apt-get install imagemagick
