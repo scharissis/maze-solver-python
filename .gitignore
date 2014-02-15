@@ -1,5 +1,6 @@
 tmp/*
 out/*
+!out/maze_000.*
 
 *~
 *.swp
