@@ -18,6 +18,7 @@ OUT_VID=out/${MAZE_NAME%.*}.avi
 
 # Solve.
 python solve.py $MAZE
+if [ $? -ne 0 ]; then exit 1; fi
 
 echo -n 'Generating AVI...'
 avconv -r 10 -i $TMP_DIR/%5d.jpg $OUT_VID 2> /dev/null

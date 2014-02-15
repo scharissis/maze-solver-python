@@ -60,7 +60,7 @@ class Solver:
         logging.info("Loaded image '{0}' ({1} pixels).".format(self.file_in, self.image.size))
 
         # BFS parameters.
-	self.tmp_dir = 'tmp'
+        self.tmp_dir = 'tmp'
         self.iterations = 0
 
     """
@@ -82,8 +82,8 @@ class Solver:
         path = self._BFS(self.START, self.END)
         if path is None:
             logging.error('No path found.')
-            self._drawX(self.pixels, self.START)
-            self._drawX(self.pixels, self.END)
+            self._drawX(self.START, self.START_COLOR)
+            self._drawX(self.END, self.END_COLOR)
             self.image.save(self.file_out)
             sys.exit(1)
         
