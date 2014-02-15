@@ -16,5 +16,8 @@ Generating GIF...	out/maze_000.gif
 
 Dependencies:
 ======
-  * Package 'imagemagick' for the `convert` command.
+  * Package 'imagemagick' for the `convert` command:
+  
+  ```
   sudo apt-get install imagemagick
+  ```
