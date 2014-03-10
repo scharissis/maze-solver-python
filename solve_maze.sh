@@ -11,7 +11,7 @@ OUT_VID=out/${MAZE_NAME%.*}.avi
 
 
 SORT="sort -V"
-if [ "$(uname)" == "Darwin" ]; then
+if   ! ls tmp/*.jpg | $SORT >/dev/null 2>&1; then
 	SORT="sort -k1"
 fi
 
