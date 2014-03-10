@@ -1,6 +1,6 @@
 tmp/*
 out/*
-!out/maze_000.*
+out/maze_000.avi
 
 *~
 *.swp
