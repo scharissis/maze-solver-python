@@ -8,10 +8,13 @@ MAZE=$1
 MAZE_NAME=$(basename "$MAZE")
 OUT_GIF=out/${MAZE_NAME%.*}.gif
 OUT_VID=out/${MAZE_NAME%.*}.avi
+
+
 SORT="sort -V"
-SORT_BSD="sort -k1"
-#check for correct sort parameter, BSD does not have -V option
-if   ! ls tmp/*.jpg |$SORT >/dev/null 2>&1 ; then SORT=$SORT_BSD; fi
+if [ "$(uname)" == "Darwin" ]; then
+	SORT="sort -k1"
+fi
+
 # Clean up old output files.
 {
 	rm $TMP_DIR/* 
@@ -38,6 +41,6 @@ echo -n 'Generating GIF...'
     done
 )
 
-convert -delay 10 -loop 0 -layers optimize $( ls $TMP_DIR/*.jpg |$SORT ) $OUT_GIF
+convert -delay 10 -loop 0 -layers optimize $( ls $TMP_DIR/*.jpg | $SORT ) $OUT_GIF
 
 echo -e "\t$OUT_GIF"
