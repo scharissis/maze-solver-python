@@ -27,3 +27,14 @@ Generating GIF...	out/maze_000.gif
   ```
   sudo apt-get install imagemagick
   ```
+
+  * for Mac using brew for the `convert`command:
+
+  ```
+  brew install imagemagick
+  ```
+  * for Mac using brew for the `avconv` command:
+
+  ```
+  brew install libav
+  ```
