@@ -22,19 +22,17 @@ Generating GIF...	out/maze_000.gif
 
 
 #### Dependencies:
-  * Package 'imagemagick' for the `convert` command:
+ * Package 'imagemagick' for the `convert` command.
+ * Package 'libav' for the `avconv` command.
   
-  ```
-  sudo apt-get install imagemagick
-  ```
-
-  * for Mac using brew for the `convert`command:
-
-  ```
-  brew install imagemagick
-  ```
-  * for Mac using brew for the `avconv` command:
-
-  ```
-  brew install libav
-  ```
+#### Install:
+ * Ubuntu:
+ 
+   ```
+   sudo apt-get install imagemagick libav-tools
+   ```
+ * Mac:
+ 
+   ```
+   brew install imagemagick libav
+   ```
