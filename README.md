@@ -11,6 +11,10 @@ Original | Searching... | Solved
 
 ```
 stefano@stefano-laptop:~/code/src/maze-solver$ ./solve_maze.sh mazes/maze_000.jpg
+
+for bsd version (e.g. Mac)
+./solve_maze_bsd.sh mazes/maze_000.jpg
+
 INFO: Loaded image 'mazes/maze_000.jpg' ((800, 1002) pixels).
 INFO: Solving...
 INFO: Found a path after 457955 iterations.
@@ -27,3 +31,14 @@ Generating GIF...	out/maze_000.gif
   ```
   sudo apt-get install imagemagick
   ```
+* for Mac using brew for the `convert`command:
+
+```
+brew install imagemagick
+```
+
+* for Mac using brew for the `avconv` command:
+
+```
+brew install libav
+```
