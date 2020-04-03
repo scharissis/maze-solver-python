@@ -155,7 +155,6 @@ class Solver:
 
         self.image.save(self.file_out)
         logging.info("Solution saved as '{0}'.".format(self.file_out))
-        print(time.asctime(), ": DONE!")
 
     def _drawX(self, pos, color=(0,0,255)):
         x,y = pos
