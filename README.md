@@ -8,6 +8,8 @@ Original | Searching... | Solved
 
 
 ## Usage
+There is a python script which solves the input image and outputs a solution image with the path it found.
+Additionally, if you'd like to generate a GIF or MP4 of the process, you use the shell script.
 
 ### Solve and output image
 ```
@@ -22,19 +24,10 @@ $ ./solve_maze.sh mazes/maze_000.jpg
 ### Installation
 
 ### Dependencies:
- * Package 'imagemagick' for the `convert` command.
- * Package 'libav' for the `avconv` command.
-  
- * Ubuntu:
- 
-   ```
-   sudo apt-get install imagemagick libav-tools
-   ```
- * Mac:
- 
-   ```
-   brew install imagemagick libav
-   ```
+
+### System
+OPTIONAL: package `ffmpeg` for generating mp4 and gif.
+If you just want to output an image, these are not needed.
 
 ### Packages
 ```

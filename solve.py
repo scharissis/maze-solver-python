@@ -58,6 +58,10 @@ class Solver:
         # Output parameters.
         self.SNAPSHOT_FREQ = 20000 # Save an image every SNAPSHOT_FREQ steps.
 
+        # BFS parameters.
+        self.tmp_dir = 'tmp'
+        self.iterations = 0
+
         # Load image.
         self.image = Image.open(self.file_in)
         logging.info("Loaded image '{0}' ({1} = {2} pixels).".format(
@@ -66,11 +70,12 @@ class Solver:
         self.pixels = self.image.load()
         self.START = self._findStart()
         self.END = self._findEnd()
+        self._saveImage(self.image, '{0}/start_end.jpg'.format(self.tmp_dir))
         self._cleanImage()
+        self._drawSquare(self.START, self.START_COLOR)
+        self._drawSquare(self.END, self.END_COLOR)
+        self._saveImage(self.image, '{0}/clean.jpg'.format(self.tmp_dir))
 
-        # BFS parameters.
-        self.tmp_dir = 'tmp'
-        self.iterations = 0
 
     """
     Purify pixels to either pure black or white, except for the start/end pixels.
@@ -101,26 +106,36 @@ class Solver:
         return closest_color
 
     def _findColorCenter(self, color):
+        found_color = False
         x_min, x_max, y_min, y_max = float('inf'), float('-inf'), float('inf'), float('-inf')
         x,y = self.image.size
         for i in range(x):
             for j in range(y):
                 code = self._findClosestColor(self.pixels[i,j])
                 if  code == color:
+                    found_color = True
                     x_min, y_min = min(x_min, i), min(y_min, j)
                     x_max, y_max = max(x_max, i), max(y_max, j)
-        return (mean([x_min, x_max]), mean([y_min, y_max]))
+        if not found_color:
+            return (0,0), False
+        return (mean([x_min, x_max]), mean([y_min, y_max])), True
 
     def _findStart(self):
         logging.info("Finding START point...")
-        start = self._findColorCenter(self.START_COLOR)
+        start, ok = self._findColorCenter(self.START_COLOR)
+        if not ok:
+           logging.error("Oops, failed to find start point in maze!")
         self._drawSquare(start, self.START_COLOR)
+        logging.info(start)
         return start
 
     def _findEnd(self):
         logging.info("Finding END point...")
-        end = self._findColorCenter(self.END_COLOR)
+        end, ok = self._findColorCenter(self.END_COLOR)
+        if not ok:
+            logging.error("Oops, failed to find end point in maze!")
         self._drawSquare(end, self.END_COLOR)
+        logging.info(end)
         return end
 
     def solve(self):
@@ -140,11 +155,11 @@ class Solver:
 
         self.image.save(self.file_out)
         logging.info("Solution saved as '{0}'.".format(self.file_out))
-        print("\n", time.asctime(), ": DONE!")
+        print(time.asctime(), ": DONE!")
 
     def _drawX(self, pos, color=(0,0,255)):
         x,y = pos
-        d = 5
+        d = 10
         for i in range(-d,d):
             self.pixels[x+i,y] = color
         for j in range(-d,d):
@@ -176,6 +191,9 @@ class Solver:
         x,y = pos
         return [(x-1,y),(x,y-1),(x+1,y),(x,y+1)]
 
+    def _saveImage(self, img, path):
+        img.save(path)
+
     """
     Breadth-first search.
     """
@@ -202,7 +220,7 @@ class Solver:
                     x,y = position
                     pixels[x,y] = self.COLOR_RED
                 for i in range(10):
-                    image.save('{0}/{1:05d}.jpg'.format(self.tmp_dir, img))
+                    self._saveImage(image, '{0}/{1:05d}.jpg'.format(self.tmp_dir, img))
                     img += 1
                 logging.info('Found a path after {0} iterations.'.format(self.iterations))
                 image.show("Solution Path")
@@ -216,7 +234,7 @@ class Solver:
                     new_path.append(neighbour)
                     Q += [new_path]
             if self.iterations % self.SNAPSHOT_FREQ == 0:
-                image.save('{0}/{1:05d}.jpg'.format(self.tmp_dir, img))
+                self._saveImage(image, '{0}/{1:05d}.jpg'.format(self.tmp_dir, img))
                 img += 1
             self.iterations += 1
         print("Returning after ", self.iterations, " iterations.")
