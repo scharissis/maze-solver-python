@@ -7,25 +7,24 @@ Original | Searching... | Solved
 
 
 
-#### Usage example:
+## Usage
 
+### Solve and output image
 ```
-stefano@stefano-laptop:~/code/src/maze-solver$ ./solve_maze.sh mazes/maze_000.jpg
-INFO: Loaded image 'mazes/maze_000.jpg' ((800, 1002) pixels).
-INFO: Solving...
-INFO: Found a path after 457955 iterations.
-INFO: Solution saved as 'out/maze_000.jpg'.
-Generating AVI...	out/maze_000.avi
-Generating GIF...	out/maze_000.gif
+$ python3 solve.py mazes/maze_63423.jpg
 ```
 
+### Solve and output gif & avi
+```
+$ ./solve_maze.sh mazes/maze_000.jpg
+```
 
+### Installation
 
-#### Dependencies:
+### Dependencies:
  * Package 'imagemagick' for the `convert` command.
  * Package 'libav' for the `avconv` command.
   
-#### Install:
  * Ubuntu:
  
    ```
@@ -36,3 +35,10 @@ Generating GIF...	out/maze_000.gif
    ```
    brew install imagemagick libav
    ```
+
+### Packages
+```
+virtualenv venv
+. ./venv/bin/activate
+pip3 install -r requirements.txt
+```

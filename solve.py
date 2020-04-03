@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 
 """
     Maze Solver
@@ -140,7 +140,7 @@ class Solver:
 
         self.image.save(self.file_out)
         logging.info("Solution saved as '{0}'.".format(self.file_out))
-        print "\n", time.asctime(), ": DONE!"
+        print("\n", time.asctime(), ": DONE!")
 
     def _drawX(self, pos, color=(0,0,255)):
         x,y = pos
@@ -201,7 +201,7 @@ class Solver:
                 for position in path:
                     x,y = position
                     pixels[x,y] = self.COLOR_RED
-                for i in xrange(10):
+                for i in range(10):
                     image.save('{0}/{1:05d}.jpg'.format(self.tmp_dir, img))
                     img += 1
                 logging.info('Found a path after {0} iterations.'.format(self.iterations))
@@ -219,7 +219,7 @@ class Solver:
                 image.save('{0}/{1:05d}.jpg'.format(self.tmp_dir, img))
                 img += 1
             self.iterations += 1
-        print "Returning after ", self.iterations, " iterations."
+        print("Returning after ", self.iterations, " iterations.")
         return None
 
 def mean(numbers):
