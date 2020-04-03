@@ -3,7 +3,7 @@
 
 Original | Searching... | Solved
 -------- | ------------ | ------
-<img src="https://raw.github.com/scharissis/maze-solver-python/master/mazes/maze_000.jpg" width="250px"> | <img src="https://raw.github.com/scharissis/maze-solver-python/master/out/maze_000.gif" width="250px"> | <img src="https://raw.github.com/scharissis/maze-solver-python/master/out/maze_000.jpg" width="250px">
+<img src="https://raw.github.com/scharissis/maze-solver-python/master/mazes/maze_63423.jpg" width="250px"> | <img src="https://raw.github.com/scharissis/maze-solver-python/master/out/maze_63423.gif" width="250px"> | <img src="https://raw.github.com/scharissis/maze-solver-python/master/out/maze_63423.jpg" width="250px">
 
 
 
