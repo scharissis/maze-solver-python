@@ -118,7 +118,7 @@ class Solver:
                     x_max, y_max = max(x_max, i), max(y_max, j)
         if not found_color:
             return (0,0), False
-        return (mean([x_min, x_max]), mean([y_min, y_max])), True
+        return (int(mean([x_min, x_max])), int(mean([y_min, y_max]))), True
 
     def _findStart(self):
         logging.info("Finding START point...")
