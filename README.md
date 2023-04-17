@@ -18,7 +18,7 @@ $ python3 solve.py mazes/maze_63423.jpg
 
 ### Solve and output gif & avi
 ```
-$ ./solve_maze.sh mazes/maze_000.jpg
+$ ./solve_maze.sh mazes/maze_801600.jpg
 ```
 
 ### Installation
