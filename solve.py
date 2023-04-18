@@ -17,7 +17,6 @@
 import os
 import sys
 import math
-import time
 import logging
 from PIL import Image
 
@@ -99,10 +98,10 @@ class Solver:
 
     def _findClosestColor(self, color, memoize=False):
         colors = list(self.COLOR_MAP.keys())
-        if color in self.memoized_color_map and memoize == True:
+        if color in self.memoized_color_map and memoize is True:
             return color
         closest_color = sorted(colors, key=lambda c: distance(c, color))[0]
-        if memoize == True: self.memoized_color_map[color] = closest_color
+        if memoize is True: self.memoized_color_map[color] = closest_color
         return closest_color
 
     def _findColorCenter(self, color):
