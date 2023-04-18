@@ -13,6 +13,14 @@ if [ -z "$MAZE" ]; then
 	echo "Usage: $0 maze.jpg"; exit 1;
 fi
 
+# Check we have ffmpeg installed.
+if ! command -v ffmpeg &> /dev/null
+then
+    echo "ffmpeg could not be found; please install it first."
+    exit
+fi
+
+
 SORT="sort -V"
 if   ! find "$TMP_DIR" -maxdepth 1 -name *.jpg | "$SORT" >/dev/null 2>&1; then
 	SORT="sort -k1"
