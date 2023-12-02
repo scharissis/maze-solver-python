@@ -92,16 +92,19 @@ class Solver:
                     continue
                 closest_color = self._findClosestColor(self.pixels[i,j])
                 for color in [self.COLOR_WHITE, self.COLOR_BLACK]:
-                    if closest_color == color: self.pixels[i,j] = color
+                    if closest_color == color:
+                        self.pixels[i,j] = color
                 for color in [self.START_COLOR, self.END_COLOR]:
-                    if closest_color == color: self.pixels[i,j] = self.COLOR_WHITE
+                    if closest_color == color:
+                        self.pixels[i,j] = self.COLOR_WHITE
 
     def _findClosestColor(self, color, memoize=False):
         colors = list(self.COLOR_MAP.keys())
         if color in self.memoized_color_map and memoize is True:
             return color
         closest_color = sorted(colors, key=lambda c: distance(c, color))[0]
-        if memoize is True: self.memoized_color_map[color] = closest_color
+        if memoize is True:
+            self.memoized_color_map[color] = closest_color
         return closest_color
 
     def _findColorCenter(self, color):
